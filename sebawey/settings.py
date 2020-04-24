@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'system'
 ]
 
 MIDDLEWARE = [
@@ -69,6 +70,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sebawey.wsgi.application'
 
+AUTH_USER_MODEL = 'system.User'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases

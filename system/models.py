@@ -1,5 +1,6 @@
-from django.db import models
+
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 # Create your models here.
 
 class User(AbstractUser):
@@ -9,7 +10,7 @@ class User(AbstractUser):
 
 
 class Student(models.Model):
-    user = models.OneToOneField(User, verbose_name=_("User"), on_delete=models.CASCADE)
+    user = models.OneToOneField(User, verbose_name="TheUser", on_delete=models.CASCADE , primary_key=True)
     full_name = models.CharField(max_length=100)
-    age = models.IntegerField(verbose_name="Student Age" , null=True , max_length=60)
+    age = models.IntegerField(verbose_name="Student Age" , null=True )
     
