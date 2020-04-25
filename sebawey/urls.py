@@ -1,7 +1,7 @@
 from django.contrib import admin
-from django.urls import path, re_path
-
-from system.views import obtain_auth_token
+from django.urls import include, path, re_path
+from rest_framework import routers    
+from system.views import UserContoller, obtain_auth_token
 
 """sebawey URL Configuration
 
@@ -18,8 +18,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+router = routers.DefaultRouter()   
+router.register(r'user', UserContoller, 'user') 
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
     re_path(r'^api-token-auth/', obtain_auth_token),
 ]

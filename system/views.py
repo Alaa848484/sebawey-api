@@ -1,13 +1,18 @@
 from django.shortcuts import render
+from rest_framework.authtoken import views as auth_views
+from rest_framework.compat import coreapi, coreschema
+from rest_framework.schemas import ManualSchema
+from rest_framework import viewsets
+
+from system.models import User
+from system.serializers import UserSerializer
+
+from .serializers import MyAuthTokenSerializer
 
 # Create your views here.
 
 
-from rest_framework.authtoken import views as auth_views
-from rest_framework.compat import coreapi, coreschema
-from rest_framework.schemas import ManualSchema
 
-from .serializers import MyAuthTokenSerializer
 
 
 class MyAuthToken(auth_views.ObtainAuthToken):
@@ -39,3 +44,9 @@ class MyAuthToken(auth_views.ObtainAuthToken):
 
 
 obtain_auth_token = MyAuthToken.as_view()
+
+
+class UserContoller(viewsets.ModelViewSet): 
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    
