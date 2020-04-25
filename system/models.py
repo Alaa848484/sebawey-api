@@ -129,5 +129,9 @@ def create_user_profile(sender, instance, created, **kwargs):
 class Courses(BaseModel):
     label = models.CharField(max_length=100)
     
-        
+class Skill(BaseModel):
+    label = models.CharField(max_length=100)
+    description = models.CharField(max_length=100)
+
+      
     
