@@ -124,5 +124,10 @@ def create_user_profile(sender, instance, created, **kwargs):
 # def save_user_profile(sender, instance, **kwargs):
 #     student_profile = StudentProfile.objects.get(user=instance.id)
 #     student_profile.save(**kwargs)
+
+
+class Courses(BaseModel):
+    label = models.CharField(max_length=100)
     
+        
     
