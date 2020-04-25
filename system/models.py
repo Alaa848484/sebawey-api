@@ -12,6 +12,8 @@ class User(AbstractUser):
     is_teacher = models.BooleanField(default=False)
 
 
+
+# Should exist in every model 
 class BaseModel(models.Model):
     class Meta:
         abstract = True
@@ -30,7 +32,19 @@ class BaseModel(models.Model):
 
 
 
-class Student(models.Model):
+class StudentProfile(models.Model):
     user = models.OneToOneField(User, verbose_name="TheUser", on_delete=models.CASCADE , primary_key=True)
     full_name = models.CharField(max_length=100)
-    age = models.IntegerField(verbose_name="Student Age" , null=True )
+    birth_date = models.IntegerField(verbose_name="Student Age" , null=True )
+    location = models.CharField(max_length=30 , blank=True)
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        StudentProfile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
